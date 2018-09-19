@@ -4,7 +4,7 @@ RSPC(Recommend System of Public Class)旨在目前没有一个高效率挑选公
 
 ## 项目原型
 
-<iframe src="https://free.modao.cc/app/t1MNf0z3kL0DxKqN83XtY7KmMcEzqq1/embed" width="515" height="968" allowTransparency="true" frameborder="0"></iframe>
+[原型地址](https://free.modao.cc/app/t1MNf0z3kL0DxKqN83XtY7KmMcEzqq1)
 
 ## 需求分析
 
