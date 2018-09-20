@@ -42,5 +42,3 @@ RSPC(Recommend System of Public Class)旨在目前没有一个高效率挑选公
 
 - 后端:`php`基于ci框架搭建api服务
 - 前端:`html+css+jq`,若时间允许尝试使用`webpack`构建
-
-Sfdfgf345tgfDt4ef435556A
