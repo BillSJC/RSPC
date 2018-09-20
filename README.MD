@@ -14,8 +14,8 @@ RSPC(Recommend System of Public Class)旨在目前没有一个高效率挑选公
 
 ## 功能分析
 
-- 获取同学课表
-- 罗列上过的公选课，并进行评价
+- 展示同学课表
+- 罗列上过的公选课，并进行评价(点赞)
 - 可搜索公选课并展示评价
 - 根据课表空余时间推荐公选课，并展示评价
 
@@ -45,4 +45,4 @@ RSPC(Recommend System of Public Class)旨在目前没有一个高效率挑选公
 
 ## 数据库表设计
 
-数据库表[database](database.md)
+数据库表[database](doc/database.md)
