@@ -29,4 +29,4 @@
 - `score_avg` 平均分-int
 - `logTime` 记录时间-int
 
-![数据库结构](db.png)
+![数据库结构](static/db.png)
