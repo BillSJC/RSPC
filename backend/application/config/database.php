@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
+	'hostname' => 'rds0om6e7x911zuqj61aco.mysql.rds.aliyuncs.com',
+	'username' => 'rspc_admin',
+	'password' => 'Sfdfgf345tgfDt4ef435556A',
+	'database' => 'rspc',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

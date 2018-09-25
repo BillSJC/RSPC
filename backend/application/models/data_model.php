@@ -7,13 +7,44 @@
         }
 
         //从数据库中抓取用户信息，没有则init
-        public function getUserInfo($stuno){
-
+        public function getUserInfo($stuno,$token){
+            $resp = $this->db->get_where("user_info",array('user'=>$stuno));
+            $respArr = $resp->row_array();
+            if(count($respArr)<1){
+                return initUser($token);
+            }
+            return $respArr;
         }
 
         //初始化用户
-        public function initUser($stuno){
-
+        public function initUser($token){
+            $ch = curl_init("https://api.hduhelp.com/school/student/info");
+            $headers = array('Authorization'=>$token);
+            curl_setopt($ch, CURLOPT_HEADER, 1);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);
+            $resp = curl_exec($ch);
+            curl_close($ch);
+            var_dump($resp);
+            $respArr = json_decode($resp,true);
+            if(empty($respArr)){
+                return false;
+            }
+            /*
+            {
+                "error":0,"msg":"success","appid":"school","version":"0.4.0","isCache":false,"timestamp":1537836306,
+                "data":{
+                    "ATSCHOOLORNOT":"1",
+                    "CLASSID":"15052411",
+                    "GRADE":"2015",
+                    "MAJORCODE":"2724",
+                    "REGISTERORNOT":"1",
+                    "STAFFID":"15051237",
+                    "STAFFNAME":"杨飞",
+                    "UNITCODE":"27"
+                }
+            }
+            */
         }
 
         //编辑用户昵称
