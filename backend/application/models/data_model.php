@@ -7,17 +7,7 @@
         }
 
         //从数据库中抓取用户信息，没有则init
-        public function getUserInfo($stuno,$token){
-            $resp = $this->db->get_where("user_info",array('user'=>$stuno));
-            $respArr = $resp->row_array();
-            if(count($respArr)<1){
-                return initUser($token);
-            }
-            return $respArr;
-        }
-
-        //初始化用户
-        public function initUser($token){
+        public function getUserInfo($token){
             $ch = curl_init("https://api.hduhelp.com/school/student/info");
             $headers = array('Authorization'=>$token);
             curl_setopt($ch, CURLOPT_HEADER, 1);
@@ -30,21 +20,31 @@
             if(empty($respArr)){
                 return false;
             }
-            /*
-            {
-                "error":0,"msg":"success","appid":"school","version":"0.4.0","isCache":false,"timestamp":1537836306,
-                "data":{
-                    "ATSCHOOLORNOT":"1",
-                    "CLASSID":"15052411",
-                    "GRADE":"2015",
-                    "MAJORCODE":"2724",
-                    "REGISTERORNOT":"1",
-                    "STAFFID":"15051237",
-                    "STAFFNAME":"杨飞",
-                    "UNITCODE":"27"
-                }
+            $stuinfo = $respArr['data'];
+            if(empty($stuinfo)){
+                return false;
             }
-            */
+            $stuno = $stuinfo["STAFFID"];
+            $stfName = $stuinfo["STAFFNAME"];
+            $time = time();
+            $nick = "小".substr($stfName,0,1);
+            $data = array(
+                'user' => $stuno,
+                'name' => $stfName,
+                'logTIme' => $time,
+                'nickName' => $nick
+            ) ;
+            $resp = $this->db->get_where("user_info",array('user'=>$stuno));
+            $respArr = $resp->row_array();
+            if(count($respArr)<1){
+                return initUser($data);
+            }
+            return $respArr;
+        }
+
+        //初始化用户
+        public function initUser($stuArr){
+            return $this->db->insert('user_info',$stuArr);
         }
 
         //编辑用户昵称
