@@ -1,0 +1,77 @@
+body {
+    background-color:gainsboro;
+    text-align: center;
+    border: 0px
+}
+
+div.top {  
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+
+    background-color:#ab47bc;
+    height: 7vh;
+    text-align: center;
+}
+
+div.topContainer{    
+    text-align: center;
+    vertical-align: middle;
+}
+
+div.buttom{
+    height: 6vh;
+    background-color:whitesmoke;
+    text-align: center;
+    vertical-align: middle;
+}
+
+div.mainwarpper{
+    background-color:#f3e5f5;
+    height: 92vh;
+    text-align: center;
+}
+
+div.mainwarpper2{
+    background-color:#f3e5f5;
+    text-align: center;
+    height: 86vh
+}
+
+p.title {
+    color: whitesmoke;
+    font-size:3vh ;
+    vertical-align: middle;
+    position: relative
+}
+
+div.loginButtonDiv {
+    width: 100vw;
+    height: 60vh;
+    background-color:#f3e5f5;
+}
+
+.loginButton {
+    background-color: #9c27b0;
+    border: none;
+    color: white;
+    padding: 30px 64px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.parent {
+    width:100wh;
+    height:60wh;
+    display:table-cell;
+    vertical-align:middle;
+    text-align: center;
+}
+.child {
+    width:20wh;
+    height:20wh;
+    display:inline-block;
+}

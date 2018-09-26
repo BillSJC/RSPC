@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <script src="jq.js"></script>
+        <script src="func.js"></script>
+    </head>
+    <body>
+        <div class="top">
+            <div class="topcontainer">
+                <p class="title">公选课推荐系统</p>
+            </div>
+        </div>
+        <div class="mainwarpper">
+            <!-- head end -->
+            <div class="loginButtonDiv parent">
+                <div class="loginButtonDivInside child">
+                        <a id="loginButton" href="http://cas.hdu.edu.cn" class="loginButton">数字杭电登录</a>
+                </div>
+            </div>
+            <!-- buttom begin -->
+        </div>
+        <script>
+            $.get("https://api.hduhelp.com/login/url/school?redirect=https%3a%2f%2frspc.hduhelp.com%2fmain.html&clientId=RSPC",function(data,status){
+                document.getElementById("loginButton").setAttribute("href",data["url"]); 
+            });
+        </script>
+    </body>
+</html>

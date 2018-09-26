@@ -1,0 +1,17 @@
+<html>
+    <head>
+            <script src="jq.js"></script>
+            <script src="func.js"></script>
+    </head>
+    <body>
+        <script>
+            token = getQueryVariable("auth")
+            if(token != false){
+                localStorage.setItem("accessToken",token)  
+            }else{
+                token = localStorage.getItem("accessToken")
+            }
+            alert("the token is"+token)
+        </script>
+    </body>
+</html>
