@@ -15,20 +15,18 @@ function ajaxSendResuestToAPI(tragetUrl,handler){
             window.location("https://rspc.hduhelp.com/login.html");
             return -1;
     }
-    resp = $.ajax({
+        $.ajax({
         url:tragetUrl,
-        async:false,
+        async:true,
         type:"get",
         headers: {
                 "Authorization":"token "+token
         },
         success: function(data) {
                 handler(data);
-                return 1;
         },
         error: function(err) {
                 console.log("error in ajax:"+error)
-                return 0;
         },
     })
 }
