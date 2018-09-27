@@ -18,7 +18,8 @@
                     "Authorization":"token "+token
                 },
                 success: function(data) {  
-                    alert(data);
+                    jsdata = JSON.parse(data)
+                    alert("欢迎！"+data["STAFFID"]);
                 },
                 error: function(err) {
                     console.log("error in ajax:"+error)

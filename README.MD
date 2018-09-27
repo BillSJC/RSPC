@@ -47,6 +47,10 @@ RSPC(Recommend System of Public Class)旨在目前没有一个高效率挑选公
 - [数据库设计](doc/database.md)
 - 前端:`html+css+jq`,若时间允许尝试使用`webpack`构建
 
+## 开发模式
+
+- 本地调试+RestletClient插件调试 + 杭电助手服务器线上运行调试
+
 ## 数据库表设计
 
 数据库表[database](doc/database.md)
