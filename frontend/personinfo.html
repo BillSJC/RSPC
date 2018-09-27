@@ -7,22 +7,21 @@
         <script>
             token = localStorage.getItem("accessToken")
             if(token == null){
-                    alert("您还未登录，请先登录！");
-                    window.location("https://rspc.hduhelp.com/login.html");
-                    return -1;
+                alert("您还未登录，请先登录！");
+                window.location("https://rspc.hduhelp.com/login.html");
             }
             $.ajax({
             url:tragetUrl,
             async:true,
                 type:"get",
                 headers: {
-                        "Authorization":"token "+token
+                    "Authorization":"token "+token
                 },
                 success: function(data) {  
                     alert(data["data"]["STAFFID"]);
                 },
                 error: function(err) {
-                        console.log("error in ajax:"+error)
+                    console.log("error in ajax:"+error)
                 },
             })
         </script>
