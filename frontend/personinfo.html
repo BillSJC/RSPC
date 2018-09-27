@@ -5,6 +5,8 @@
             <meta charset="utf-8">
     </head>
     <body>
+            <p>姓名:<span id="spanUser"></span></p>
+            <p>学号:<span id="spanNo"></span></p>
         <script>
             token = localStorage.getItem("accessToken")
             if(token == null){
@@ -20,7 +22,10 @@
                 },
                 success: function(data) {  
                     jsdata = JSON.parse(data)
-                    alert("欢迎!"+data["STAFFID"]);
+                    staffid = data["data"]["STAFFID"];
+                    staffname = data["data"]["STAFFNAME"];
+                document.getElementById("spanUser").innerHTML = staffname;
+                document.getElementById("spanId").innerHTML = staffid;
                 },
                 error: function(err) {
                     console.log("error in ajax:"+error)
