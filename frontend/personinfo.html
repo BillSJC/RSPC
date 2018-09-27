@@ -2,6 +2,7 @@
     <head>
             <script src="jq.js"></script>
             <script src="func.js"></script>
+            <meta charset="utf-8">
     </head>
     <body>
         <script>
@@ -19,7 +20,7 @@
                 },
                 success: function(data) {  
                     jsdata = JSON.parse(data)
-                    alert("欢迎！"+data["STAFFID"]);
+                    alert("欢迎!"+data["STAFFID"]);
                 },
                 error: function(err) {
                     console.log("error in ajax:"+error)
