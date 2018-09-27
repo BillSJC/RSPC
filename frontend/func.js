@@ -8,20 +8,26 @@ function getQueryVariable(variable){
        return(false);
 }
 
-function ajaxSendResuestToAPI(tragetUrl){
+function ajaxSendResuestToAPI(tragetUrl,handler){
     token = localStorage.getItem("accessToken")
     if(token == null){
             alert("您还未登录，请先登录！");
             window.location("https://rspc.hduhelp.com/login.html");
             return -1;
     }
-        return $.ajax({
+        $.ajax({
         url:tragetUrl,
         async:true,
         type:"get",
         headers: {
                 "Authorization":"token "+token
-        }
+        },
+        success: function(data) {
+                handler(data);
+        },
+        error: function(err) {
+                console.log("error in ajax:"+error)
+        },
     })
 }
 
