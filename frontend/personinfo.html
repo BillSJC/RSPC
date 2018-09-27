@@ -5,16 +5,8 @@
     </head>
     <body>
         <script>
-            ajaxSendResuestToAPI("https://api.hduhelp.com/school/staff/info",function(data){
-                if(data["error"]!=0){
-                    console.log(data["error"]);
-                    return false;
-                }
-                datas = data["data"];
-                stfid = data["STAFFID"];
-                stfname = data["STAFFNAME"];
-                alert(stfid+stfname);
-            })
+            data = ajaxSendResuestToAPI("https://api.hduhelp.com/school/staff/info");
+            alert(data["data"]["STAFFID"]);
         </script>
     </body>
 </html>

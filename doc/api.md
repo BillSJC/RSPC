@@ -157,3 +157,5 @@ response(200):
 ```json
 
 ```
+
+### GET `/person/info` 获取个人信息
