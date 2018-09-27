@@ -5,14 +5,13 @@
     </head>
     <body>
         <script>
-            token = localStorage.getItem("accessToken")
             if(token == null){
                 alert("您还未登录，请先登录！");
                 window.location("https://rspc.hduhelp.com/login.html");
             }
             $.ajax({
-            url:tragetUrl,
-            async:true,
+                url:"https://api.hduhelp.com/school/staff/info",
+                async:true,
                 type:"get",
                 headers: {
                     "Authorization":"token "+token
