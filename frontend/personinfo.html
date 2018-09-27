@@ -5,6 +5,7 @@
     </head>
     <body>
         <script>
+            token = localStorage.getItem("accessToken")
             if(token == null){
                 alert("您还未登录，请先登录！");
                 window.location("https://rspc.hduhelp.com/login.html");
