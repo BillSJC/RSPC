@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Welcome extends MY_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -18,8 +18,15 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
+	public function index(){
 		$this->load->view('welcome_message');
+	}
+
+	public function debugTest(){
+		$token = $this->input->getHttpHeader('Authorization');
+		if(is_null($token)){
+			echo $this->makeErrorJSON(401,40100,'Unauthorized');
+		}
+		echo $this->sendRequestToMainAPI('school','student/info',array(),$token,false);
 	}
 }
