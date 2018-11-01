@@ -9,6 +9,7 @@ class MY_Controller extends CI_Controller {
         parent::__construct();
 
         //input your sign here
+        header("content-type: application/json");
         $this->signstr = 'sign here';
         $this->schoolYear = "2018-2019";
         $this->semester = '1';
@@ -49,7 +50,16 @@ class MY_Controller extends CI_Controller {
      * getStaffidAndStaffInfo
      */
     public function getUserInfo(){
-        return $this->input->getHttpHeader('Authorization');
+		$token = $this->input->getHttpHeader('Authorization');
+		if(is_null($token)){
+			echo $this->makeErrorJSON(401,40100,'Unauthorized');
+		}
+		$rersp = $this->sendRequestToMainAPI('school','student/info',array(),$token,false);
+        $arr = json_decode($rersp,true);
+        if(is_null($arr)){
+            makeErrorJSONandDie(400,50000,"NetworkError");
+        }
+        return $arr;
     }
 
     /**
@@ -93,19 +103,22 @@ class MY_Controller extends CI_Controller {
         return $data;
     }
 
-    public function sendRequestToMainAPI($appid = '',$path = '',$postForm = array(),$token = '',$isPost = false){
+    public function sendRequestToMainAPI($appid,$path,$postForm,$token,$isPost){
         
         $baseurl = $this->baseurl;
         $apiBaseUrl = "{$baseurl}/{$appid}/{$path}";
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $apiBaseUrl);
-        curl_setopt($curl, CURLOPT_HEADER, 1);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE); // https请求 不验证证书和hosts
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
+        /*
         if($isPost){
             curl_setopt($curl, CURLOPT_POST, 1);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $postForm);
         }
-        curl_setopt($curl,CURLOPT_HTTPHEADER,array("sign:{$token}"));
+        */
+        curl_setopt($curl,CURLOPT_HTTPHEADER,array("Authorization:{$token}"));
         $data = curl_exec($curl);
         curl_close($curl);
         return $data;
@@ -121,6 +134,11 @@ class MY_Controller extends CI_Controller {
 
     }
 
+    /**
+     * makeErrorJSON
+     * 
+     * make output JSON to show errors
+     */
     public function makeErrorJSON($httpCode=400,$errcode = 40000,$errmsg = 'bad request'){
         $this->httpStatus($httpCode);
         return json_encode(array(
@@ -130,6 +148,27 @@ class MY_Controller extends CI_Controller {
         ));
     }
 
+    /**
+     * makeErrorJSON
+     * 
+     * make output JSON to show errors
+     */
+    public function makeErrorJSONandDie($httpCode=400,$errcode = 40000,$errmsg = 'bad request'){
+        $this->httpStatus($httpCode);
+        echo json_encode(array(
+            'error' => $errcode,
+            'msg' => $errmsg,
+            'time' => time()
+        ));
+        die();
+    }
+
+    
+    /**
+     * httpStatus
+     * 
+     * edit httpStatusCode to http header
+     */
     public function httpStatus($code) { 
         $http = array ( 
             100 => "HTTP/1.1 100 Continue", 

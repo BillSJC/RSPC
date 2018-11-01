@@ -23,10 +23,6 @@ class Welcome extends MY_Controller {
 	}
 
 	public function debugTest(){
-		$token = $this->input->getHttpHeader('Authorization');
-		if(is_null($token)){
-			echo $this->makeErrorJSON(401,40100,'Unauthorized');
-		}
-		echo $this->sendRequestToMainAPI('school','student/info',array(),$token,false);
+		var_dump($this->getUserInfo());
 	}
 }
